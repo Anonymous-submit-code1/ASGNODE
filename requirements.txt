@@ -1,0 +1,6 @@
+numpy
+scipy
+torch
+torch-geometric
+torch-sparse
+torchdiffeq
