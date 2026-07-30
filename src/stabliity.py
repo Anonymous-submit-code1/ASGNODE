@@ -1,5 +1,3 @@
-"""Tensor-valued stability quantities used by the ASGNODE vector field."""
-
 from dataclasses import dataclass
 
 from torch import Tensor
