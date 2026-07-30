@@ -5,8 +5,23 @@ import torch_sparse
 
 from base_classes import ODEFunc
 from stability import StabilityParameters
-from graph_type import edge_weight_baseline
 from main_hyperparameters import continuous_field_certificate
+
+
+_HETEROPHILIC_DATASETS = {"texas", "wisconsin", "cornell", "film"}
+
+
+def _edge_weight_reference(dataset: str, override=None) -> float:
+    """Select the edge centering rule without inspecting node labels."""
+
+    if override is not None:
+        graph_kind = str(override).strip().lower().replace("_", "-")
+        if graph_kind not in {"homophilic", "heterophilic"}:
+            raise ValueError("graph_type must be homophilic or heterophilic")
+        return 0.5 if graph_kind == "heterophilic" else 0.0
+
+    dataset_name = str(dataset).strip().lower().replace("_", "-")
+    return 0.5 if dataset_name in _HETEROPHILIC_DATASETS else 0.0
 
 
 class MaxNFEException(RuntimeError):
@@ -28,7 +43,7 @@ class LaplacianODEFunc(ODEFunc):
         self.data = data
         self.in_features = in_features
         self.out_features = out_features
-        self._edge_reference = edge_weight_baseline(
+        self._edge_reference = _edge_weight_reference(
             opt.get('dataset', ''),
             opt.get('graph_type'),
         )
