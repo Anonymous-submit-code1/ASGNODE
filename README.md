@@ -10,8 +10,7 @@ environment compatible with your CPU or CUDA installation.
 Run the experiment from this directory with:
 
 ```bash
-python src/run_GNN.py \
-  --dataset Cora
+python src/run_GNN.py
 ```
 
 The dataset configuration explicitly contains all six certificate values
@@ -27,8 +26,3 @@ reported in Table 6:
 All six are parser options. Supplying one explicitly overrides only that
 Table 6 default. A fully manual run can therefore use:
 
-```bash
-python src/run_GNN.py --dataset Cora \
-  --kappa 0.25 --separation-epsilon 0.2 --stability-margin 0.5 \
-  --lambda2 0.0148 --rho-bar 845 --mu 2.19e-6
-```
