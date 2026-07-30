@@ -32,16 +32,3 @@ python src/run_GNN.py --dataset Cora \
   --kappa 0.25 --separation-epsilon 0.2 --stability-margin 0.5 \
   --lambda2 0.0148 --rho-bar 845 --mu 2.19e-6
 ```
-
-## Source layout
-
-- `src/run_GNN.py`: main parser and training loop;
-- `src/main_configs.py`: per-dataset training and solver defaults;
-- `src/model.py`: class-space ASGNODE model;
-- `src/function_laplacian_diffusion.py`: attraction-separation vector field;
-- `src/main_hyperparameters.py`: validation and formula-derived quantities;
-- `src/data.py`: the ten main datasets and Laplacian-spectrum preparation;
-- `src/graph_type.py`: implicit homophilic/heterophilic edge-weight policy.
-
-The edge propagation rule keeps homophilic weights unchanged and internally
-subtracts `0.5` from heterophilic weights without reading node labels.
