@@ -1,6 +1,6 @@
 # Towards Asymptotic Stability: Attraction-Separation Dynamics against Oversmoothing in Graph Neural Networks
 
-![overview of ASGNODE](overview.pdf)
+![overview of ASGNODE](overview.png)
 
 Install the runtime dependencies from `requirements.txt` in a PyTorch/PyG
 environment compatible with your CPU or CUDA installation.
