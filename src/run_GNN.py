@@ -51,7 +51,7 @@ def build_parser():
             "cornell",
             "film",
         ),
-        default="Citeseer",
+        default="Cora",
     )
     data.add_argument(
         "--data-dir",
