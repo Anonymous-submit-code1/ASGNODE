@@ -17,7 +17,7 @@ python src/run_GNN.py
 
 ### Propagation Dynamics under a Shared Physical-Time Grid
 
-[Propagation dynamics under a shared physical-time grid. Columns show normalized disagreement energy, test accuracy, normalized classification margin, and degree-weighted centroid drift. Curves represent means over ten checkpoints; shaded bands indicate one sample standard deviation. The vertical dotted line marks $T_{\mathrm{ref}}=0.5$.](E4_shared_time_controls.png)
+![Propagation dynamics under a shared physical-time grid. Columns show normalized disagreement energy, test accuracy, normalized classification margin, and degree-weighted centroid drift. Curves represent means over ten checkpoints; shaded bands indicate one sample standard deviation. The vertical dotted line marks $T_{\mathrm{ref}}=0.5$.](E4_shared_time_controls.png)
 
 
 We compare full gating, ungated propagation, and spatially uniform gating on a shared physical-time grid, freezing the encoder, initial state, channel gains, graph, and readout within each checkpoint. Figure \ref{E4_shared} reports disagreement energy, test accuracy, normalized classification margin, and degree-weighted centroid drift over $t\in[0,8T_{\mathrm{ref}}]$. The three flows exhibit different energy-decay profiles, while their predictive differences depend on the dataset and propagation time. In particular, slower energy decay does not consistently imply better classification margins or accuracy. Centroid drift remains near numerical precision for all three flows, consistent with the conservation property of the symmetric graph dynamics. These frozen-checkpoint comparisons characterize propagation behavior and do not replace independently trained, time-tuned ablations.
