@@ -24,6 +24,6 @@ We compare full gating, ungated propagation, and spatially uniform gating on a s
 
 ### Hyperparameter Sensitivity
 
-![Sensitivity to learning rate and weight decay over multiplicative scales from $0.1\times$ to $10\times$ their default values.][hyperparameter sensitivity.png]
+![Sensitivity to learning rate and weight decay over multiplicative scales from $0.1\times$ to $10\times$ their default values.](hyperparameter_sensitivity.png)
 
 To assess the robustness of ASGNODE to training hyperparameters, we vary the learning rate and weight decay from $0.1\times$ to $10\times$ their reference values on Cora and CiteSeer, keeping all other settings fixed. As shown in Figure~\ref{fig:sensitivity}, ASGNODE maintains competitive classification accuracy across a broad range of configurations. These results demonstrate empirical robustness to variations in the learning rate and weight decay under the evaluated settings.
