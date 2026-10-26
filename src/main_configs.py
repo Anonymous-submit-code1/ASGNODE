@@ -6,7 +6,6 @@ Historical values are available only through explicit legacy mode.
 """
 
 from dataclasses import dataclass, replace
-import json
 from pathlib import Path
 
 
@@ -122,33 +121,3 @@ LEGACY_EXPERIMENT_CONFIGS = {
         False, 0.001, 1e-5, 0.5, 1.0, 100, -5.0,
     ),
 }
-
-
-_PAPER_TABLE = json.loads(
-    (Path(__file__).resolve().parents[1] / "configs" / "paper_table8.json").read_text(encoding="utf-8")
-)["datasets"]
-MAIN_EXPERIMENT_CONFIGS = {
-    dataset: replace(
-        config,
-        **_PAPER_TABLE[dataset],
-        mu=_PAPER_TABLE[dataset]["separation_beta"] * _PAPER_TABLE[dataset]["separation_epsilon"] * _PAPER_TABLE[dataset]["kappa"],
-        stability_margin=1.0 - _PAPER_TABLE[dataset]["separation_beta"],
-        add_source=False,
-        beltrami=False,
-        batch_norm=False,
-    )
-    for dataset, config in LEGACY_EXPERIMENT_CONFIGS.items()
-}
-
-
-def main_experiment_config(dataset: str, field_mode: str = "certified") -> MainExperimentConfig:
-    if field_mode not in {"certified", "legacy"}:
-        raise ValueError("field_mode must be certified or legacy")
-    configs = MAIN_EXPERIMENT_CONFIGS if field_mode == "certified" else LEGACY_EXPERIMENT_CONFIGS
-    try:
-        return configs[dataset]
-    except KeyError as error:
-        choices = ", ".join(MAIN_EXPERIMENT_CONFIGS)
-        raise ValueError(
-            f"Unknown main-experiment dataset: {dataset}. Choices: {choices}"
-        ) from error
